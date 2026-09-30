@@ -1,0 +1,13 @@
+configuration {
+  modi: "drun,run,window";
+  kb-remove-to-eol: "";
+  kb-accept-entry: "Return,KP_Enter,Control+m";
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
+  location: 0;
+  show-icons: true;
+  display-drun: "Apps";
+}
+
+
+@theme "theme"

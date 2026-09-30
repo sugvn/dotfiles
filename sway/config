@@ -1,0 +1,206 @@
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term kitty
+set $menu rofi -show drun -terminal $term
+set $fileManager nautilus
+set $browser firefox
+set $tone 5000
+
+set $wall /home/sugan/Pictures/gojo_v7.png
+# output * bg $wall stretch
+
+font pango:JetBrainsMono Nerd Font 8
+
+xwayland disable
+
+default_border pixel 1
+smart_borders on
+
+input * repeat_delay 200
+input * repeat_rate 30
+
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+    natural_scroll enabled
+}
+
+floating_modifier $mod normal
+
+bindgesture swipe:left workspace next
+bindgesture swipe:right workspace prev
+bindgesture swipe:up exec $menu
+bindgesture swipe:down kill
+bindsym --border button3 kill
+
+bindsym $mod+u exec toggle_powermode.sh
+bindsym $mod+c exec hyprpicker -a
+bindsym $mod+Backspace exec swaylock -f -c 000000
+bindsym $mod+g exec killall gammastep || gammastep -O $tone
+bindsym $mod+t exec kitty -e wlctl
+bindsym $mod+y exec kitty -e bluetui
+bindsym $mod+period exec rofimoji
+bindsym $mod+Return exec $term
+bindsym $mod+e exec $fileManager
+bindsym $mod+grave exec $browser # mod + `
+bindsym $mod+q kill
+bindsym $mod+p exec $menu
+bindsym $mod+Shift+r reload
+
+bindsym $mod+Shift+e exec swaymsg exit
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+d [workspace=__focused__] floating toggle
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout toggle split
+bindsym $mod+w exec swaymsg layout toggle split tabbed
+# bindsym $mod+n bar mode toggle
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bindsym Print exec slurp | grim -g - - | tee ~/Pictures/screenshots/screenshot-on-$(date +%d-%m-%Y_%H:%M:%S).png | wl-copy
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+bindsym --locked XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+bindsym --locked XF86AudioPlay        exec playerctl play-pause
+bindsym --locked XF86AudioStop        exec playerctl stop
+bindsym --locked XF86AudioPrev        exec playerctl previous
+bindsym --locked XF86AudioNext        exec playerctl next
+
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl --class=backlight set +10%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl --class=backlight set 10%-
+
+bar {
+    position bottom
+    status_command i3status
+    height 15
+    font JetBrainsMono Nerd Font 11
+}
+
+# Window rules
+
+for_window [workspace="5"] floating enable
+# for_window [app_id="firefox"] border none
+
+for_window [class="Chromium-browser"] mark Browser
+for_window [class="Brave-browser"] mark Browser
+for_window [class="firefox"]  mark Browser
+for_window [app_id="Chromium-browser"] mark Browser
+for_window [app_id="brave-browser"] mark Browser
+for_window [app_id="firefox"] mark Browser
+
+for_window [con_mark="Browser"] {
+    inhibit_idle fullscreen
+}
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] {
+    floating enable
+}
+for_window [app_id="pavucontrol"] {
+    floating enable
+    move position center
+}
+for_window [app_id="pavucontrol-qt"] {
+    floating enable
+    move position center
+}
+for_window [app_id="xfce-polkit"] {
+    floating enable
+    move position center
+}
+
+# Misc
+
+# Passthrough
+mode "passthrough" {
+    bindsym $mod+Pause mode default
+}
+bindsym $mod+Pause mode "passthrough"
+
+# Policy kit agent
+exec /usr/libexec/xfce-polkit
+
+# Idle
+exec LT="$lock_timeout" ST="$screen_timeout" LT=${LT:-300} ST=${ST:-60} && \
+    swayidle -w \
+        timeout $LT 'swaylock -f' \
+        timeout $((LT + ST)) 'swaymsg "output * power off"' \
+                      resume 'swaymsg "output * power on"'  \
+        timeout $ST 'pgrep -xu "$USER" swaylock >/dev/null && swaymsg "output * power off"' \
+             resume 'pgrep -xu "$USER" swaylock >/dev/null && swaymsg "output * power on"'  \
+        before-sleep 'swaylock -f' \
+        lock 'swaylock -f' \
+        unlock 'pkill -xu "$USER" -SIGUSR1 swaylock'
+
+# XDG Desktop
+exec /usr/libexec/sway-systemd/wait-sni-ready && \
+    systemctl --user start sway-xdg-autostart.target
+
+# XDG User dirs
+exec /usr/bin/xdg-user-dirs-update
+
+# Cgroups
+exec /usr/libexec/sway-systemd/assign-cgroups.py
+
+# System Session 
+exec /usr/libexec/sway-systemd/session.sh
