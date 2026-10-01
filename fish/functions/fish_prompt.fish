@@ -18,6 +18,11 @@ function fish_prompt
                 set arrow "$arrow_color# "
         end
 
+        set -l container ''
+        if set -q CONTAINER_ID
+                set container $yellow"($CONTAINER_ID) "$normal
+        end
+
         set -l cwd $cyan(prompt_pwd | path basename)
-        echo -n -s $arrow ' ' $cwd (fish_git_prompt) ' '
+        echo -n -s $container $arrow ' ' $cwd (fish_git_prompt) ' '
 end
