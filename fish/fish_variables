@@ -1,4 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BENCH:postgres\x3a//webhookd\x3awebhookd\x40localhost\x3a5432/webhookd_bench
+SETUVAR --export DB:postgres\x3a//webhookd\x3awebhookd\x40localhost\x3a5432/webhookd
+SETUVAR --export TEST_DATABASE_URL:postgres\x3a//webhookd\x3awebhookd\x40localhost\x3a5432/webhookd_test
 SETUVAR __fish_initialized:4300
 SETUVAR fish_user_paths:/home/sugan/go/bin\x1e/home/sugan/\x2elocal/bin/scripts\x1e/home/sugan/\x2elocal/bin

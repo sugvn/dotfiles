@@ -1,7 +1,7 @@
 [Default Applications]
-text/html=userapp-Firefox-WE5IV3.desktop
-x-scheme-handler/http=userapp-Firefox-WE5IV3.desktop
-x-scheme-handler/https=userapp-Firefox-WE5IV3.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
 text/plain=org.gnome.gedit.desktop
 image/jpeg=org.gnome.gThumb.desktop
 image/png=org.gnome.gThumb.desktop
@@ -9,7 +9,7 @@ application/pdf=org.pwmt.zathura.desktop
 video/mp4=mpv.desktop
 audio/mpeg=mpv.desktop
 application/zip=xarchiver.desktop
-inode/directory=thunar.desktop
+inode/directory=xfce4-file-manager.desktop
 x-scheme-handler/terminal=kitty.desktop
 x-scheme-handler/chrome=userapp-Firefox-WE5IV3.desktop
 application/x-extension-htm=userapp-Firefox-WE5IV3.desktop
@@ -18,10 +18,14 @@ application/x-extension-shtml=userapp-Firefox-WE5IV3.desktop
 application/xhtml+xml=userapp-Firefox-WE5IV3.desktop
 application/x-extension-xhtml=userapp-Firefox-WE5IV3.desktop
 application/x-extension-xht=userapp-Firefox-WE5IV3.desktop
+x-scheme-handler/trash=xfce4-file-manager.desktop
+x-scheme-handler/mailto=xfce4-mail-reader.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
 
 [Added Associations]
-x-scheme-handler/http=userapp-Firefox-WE5IV3.desktop;
-x-scheme-handler/https=userapp-Firefox-WE5IV3.desktop;
+x-scheme-handler/http=xfce4-web-browser.desktop;
+x-scheme-handler/https=xfce4-web-browser.desktop;
 x-scheme-handler/chrome=userapp-Firefox-WE5IV3.desktop;
 text/html=userapp-Firefox-WE5IV3.desktop;
 application/x-extension-htm=userapp-Firefox-WE5IV3.desktop;
@@ -30,3 +34,7 @@ application/x-extension-shtml=userapp-Firefox-WE5IV3.desktop;
 application/xhtml+xml=userapp-Firefox-WE5IV3.desktop;
 application/x-extension-xhtml=userapp-Firefox-WE5IV3.desktop;
 application/x-extension-xht=userapp-Firefox-WE5IV3.desktop;
+inode/directory=xfce4-file-manager.desktop;
+x-scheme-handler/trash=xfce4-file-manager.desktop;
+x-scheme-handler/mailto=xfce4-mail-reader.desktop;
+

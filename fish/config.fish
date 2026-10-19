@@ -19,4 +19,11 @@ set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showuntrackedfiles 0
 set -g __fish_git_prompt_showcolorhints 1
 set -g __fish_git_prompt_char_stateseparator " "
-
+# function __print_pwd --on-variable PWD
+#     pwd
+# end
+function __print_pwd --on-variable PWD
+    set -l yellow (set_color -o yellow)
+    set -l normal (set_color normal)
+    printf '%s%s%s\n' $yellow $PWD $normal
+end
